@@ -3,4 +3,7 @@ module.exports = function(app) {
 	app.get("/v1/fotos", api.lista);
 
 	app.get("/v1/fotos/:id", api.buscaPorId)
+
+	app.delete("/v1/fotos/:id", api.removePorId);
+
 };
