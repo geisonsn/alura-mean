@@ -1,15 +1,13 @@
 var api = {};
 
+var CONTADOR = 2;
+
 var fotos = [
 	{_id :1, titulo : "Leão", url : "http://www.fundosanimais.com/Minis/leoes.jpg"},
 	{_id :2, titulo : "Leão 2", url : "http://www.fundosanimais.com/Minis/leoes.jpg"}
 ];
 
 api.lista = function(req, res) {
-	var fotos = [
-		{_id :1, titulo : "Leão", url : "http://www.fundosanimais.com/Minis/leoes.jpg"},
-		{_id :2, titulo : "Leão 2", url : "http://www.fundosanimais.com/Minis/leoes.jpg"}
-	];
 	res.json(fotos);
 };
 
@@ -25,6 +23,14 @@ api.removePorId = function(req, res) {
 		return foto._id != req.params.id;
 	});
 	res.sendStatus(204);
+};
+
+api.adiciona = function(req, res) {
+	var foto = req.body;
+	foto._id = ++CONTADOR;
+	fotos.push(foto);
+	console.log(foto);
+	res.json(foto);
 };
 
 module.exports = api;
